@@ -6,7 +6,9 @@ package examenlab5_linsyposso;
 
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,11 +23,12 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
-        usuario.add(new Civiles("Juan", "Perez", "1234A", new Date(20 / 02 / 2006), "Masculino", "Cortes"));
+        usuario.add(new Civiles("Juan", "Perez", "1234A", new Date(02/ 20 / 2006), "Masculino", "Cortes"));
         usuario.add(new Civiles("Armando", " Casas", "3498W", new Date(18 / 10 / 1978), "Masculino", "Francisco Morazan"));
         usuario.add(new Civiles("Ana", "Fernandez", "9876M", new Date(31 / 12 / 1840), "Femenino", "Comayagua"));
         usuario.add(new Empleados("Mercadotecnia", "Recursos Humanos", 10, "Camila", "Rosales", "5678P", new Date(18 / 10 / 1978), "Femenino", "Francisco Morazan"));
         initComponents();
+        llenartabla();
     }
 
     /**
@@ -66,18 +69,19 @@ public class Main extends javax.swing.JFrame {
         jFrame2 = new javax.swing.JFrame();
         jPanel2 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
-        jTabbedPane3 = new javax.swing.JTabbedPane();
+        TabbedP_infoCiv = new javax.swing.JTabbedPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jTabbedPane4 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        Tf_nombregest = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        TA_descripgest = new javax.swing.JTextArea();
+        Button_enviar = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         Background = new javax.swing.JPanel();
         Panel_login = new javax.swing.JPanel();
         titulo_lg = new javax.swing.JLabel();
@@ -102,10 +106,7 @@ public class Main extends javax.swing.JFrame {
         Table_info.setBackground(new java.awt.Color(204, 204, 204));
         Table_info.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Nombre Completo", "No. Identidad", "Fecha de Nacimiento"
@@ -293,7 +294,7 @@ public class Main extends javax.swing.JFrame {
         jFrame1.getContentPane().setLayout(jFrame1Layout);
         jFrame1Layout.setHorizontalGroup(
             jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 610, Short.MAX_VALUE)
             .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jFrame1Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -302,7 +303,7 @@ public class Main extends javax.swing.JFrame {
         );
         jFrame1Layout.setVerticalGroup(
             jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 580, Short.MAX_VALUE)
             .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jFrame1Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -341,9 +342,9 @@ public class Main extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTable1);
 
-        jTabbedPane3.addTab("Informacion", jScrollPane2);
+        TabbedP_infoCiv.addTab("Informacion", jScrollPane2);
 
-        jTabbedPane2.addTab("Informacion Personal", jTabbedPane3);
+        jTabbedPane2.addTab("Informacion Personal", TabbedP_infoCiv);
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -356,14 +357,14 @@ public class Main extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Descripcion");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane5.setViewportView(jTextArea1);
+        TA_descripgest.setColumns(20);
+        TA_descripgest.setRows(5);
+        jScrollPane5.setViewportView(TA_descripgest);
 
-        jButton1.setBackground(new java.awt.Color(102, 102, 102));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("Enviar");
+        Button_enviar.setBackground(new java.awt.Color(102, 102, 102));
+        Button_enviar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Button_enviar.setForeground(new java.awt.Color(0, 0, 0));
+        Button_enviar.setText("Enviar");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -373,7 +374,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(142, 142, 142)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Tf_nombregest, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(106, 106, 106)
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -386,7 +387,7 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(98, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Button_enviar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(206, 206, 206))
         );
         jPanel4Layout.setVerticalGroup(
@@ -395,13 +396,13 @@ public class Main extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Tf_nombregest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Button_enviar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
@@ -415,6 +416,12 @@ public class Main extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Bienvenido:");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 26, -1, -1));
+
+        jButton1.setBackground(new java.awt.Color(255, 0, 0));
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jButton1.setText("Cerrar Sesion");
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, 20));
 
         javax.swing.GroupLayout jFrame2Layout = new javax.swing.GroupLayout(jFrame2.getContentPane());
         jFrame2.getContentPane().setLayout(jFrame2Layout);
@@ -605,18 +612,34 @@ public class Main extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void llenartabla(){
+        DefaultTableModel modelo = (DefaultTableModel)Table_info.getModel();
+        for (Usuarios usuarios : usuario) {
+            Object[] nuevarow = new Object[3];
+            nuevarow[0] = usuarios.getNombre() +" " + usuarios.getApellido();
+            nuevarow[1] = usuarios.getNumId();
+            nuevarow[2] = usuarios.getFechaNacimiento();
+            modelo.addRow(nuevarow);
+        }
+        Table_info.setModel(modelo);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
     private javax.swing.JButton Button_cerrarsesion;
+    private javax.swing.JButton Button_enviar;
     private javax.swing.JLabel NC_login;
     private javax.swing.JPasswordField PF_login;
     private javax.swing.JPanel PanelEmpleados;
     private javax.swing.JPanel Panel_login;
+    private javax.swing.JTextArea TA_descripgest;
+    private javax.swing.JTabbedPane TabbedP_infoCiv;
     private javax.swing.JTabbedPane Tabbed_infoCiv;
     private javax.swing.JTabbedPane Tabbed_modCiv;
     private javax.swing.JTable Table_info;
     private javax.swing.JTable Table_tramites;
+    private javax.swing.JTextField Tf_nombregest;
     private javax.swing.JLabel contra_lg;
     private javax.swing.JToggleButton ingresar_login;
     private javax.swing.JButton jButton1;
@@ -645,15 +668,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTabbedPane jTabbedPane4;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField tf_nombre;
     private javax.swing.JLabel titulo_lg;
     // End of variables declaration//GEN-END:variables
