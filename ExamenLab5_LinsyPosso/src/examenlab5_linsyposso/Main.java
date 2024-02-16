@@ -6,6 +6,7 @@ package examenlab5_linsyposso;
 
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,15 +14,17 @@ import java.util.Date;
  */
 public class Main extends javax.swing.JFrame {
 //Fila 3 Asiento 1
-    ArrayList <Usuarios> usuario = new ArrayList();
+
+    ArrayList<Usuarios> usuario = new ArrayList();
+
     /**
      * Creates new form Main
      */
     public Main() {
-        usuario.add(new Civiles("Juan", "Perez", "1234A",new Date(20/02/2006),"Masculino","Cortes"));
-        usuario.add(new Civiles("Camila", "Rosales", "5678P",new Date(18/10/1978),"Femenino","Francisco Morazan"));
-        usuario.add(new Civiles("Ana", "Fernandez", "9876M",new Date(31/12/1840),"Femenino","Comayagua"));
-        usuario.add(new Empleados("Mercadotecnia", "Recursos Humanos", 10,"Camila", "Rosales", "5678P",new Date(18/10/1978),"Femenino","Francisco Morazan"));
+        usuario.add(new Civiles("Juan", "Perez", "1234A", new Date(20 / 02 / 2006), "Masculino", "Cortes"));
+        usuario.add(new Civiles("Camila", "Rosales", "5678P", new Date(18 / 10 / 1978), "Femenino", "Francisco Morazan"));
+        usuario.add(new Civiles("Ana", "Fernandez", "9876M", new Date(31 / 12 / 1840), "Femenino", "Comayagua"));
+        usuario.add(new Empleados("Mercadotecnia", "Recursos Humanos", 10, "Camila", "Rosales", "5678P", new Date(18 / 10 / 1978), "Femenino", "Francisco Morazan"));
         initComponents();
     }
 
@@ -34,6 +37,17 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFrame1 = new javax.swing.JFrame();
+        PanelEmpleados = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        Tabbed_infoCiv = new javax.swing.JTabbedPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        Table_info = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Table_tramites = new javax.swing.JTable();
+        jTabbedPane3 = new javax.swing.JTabbedPane();
+        jButton1 = new javax.swing.JButton();
         Background = new javax.swing.JPanel();
         Panel_login = new javax.swing.JPanel();
         titulo_lg = new javax.swing.JLabel();
@@ -42,6 +56,137 @@ public class Main extends javax.swing.JFrame {
         contra_lg = new javax.swing.JLabel();
         PF_login = new javax.swing.JPasswordField();
         ingresar_login = new javax.swing.JToggleButton();
+
+        PanelEmpleados.setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Bienvenido:");
+
+        jTabbedPane1.setBackground(new java.awt.Color(102, 102, 102));
+        jTabbedPane1.setForeground(new java.awt.Color(0, 0, 0));
+
+        Tabbed_infoCiv.setBackground(new java.awt.Color(255, 0, 51));
+        Tabbed_infoCiv.setForeground(new java.awt.Color(0, 0, 0));
+
+        Table_info.setBackground(new java.awt.Color(204, 204, 204));
+        Table_info.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Nombre Completo", "No. Identidad", "Fecha de Nacimiento"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        Table_info.setMinimumSize(new java.awt.Dimension(40, 80));
+        jScrollPane3.setViewportView(Table_info);
+
+        Tabbed_infoCiv.addTab("Informacion", jScrollPane3);
+
+        Table_tramites.setBackground(new java.awt.Color(204, 204, 204));
+        Table_tramites.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Nombre Tramite", "Descripcion", "Fecha", "No. Identidad"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(Table_tramites);
+
+        Tabbed_infoCiv.addTab("Tramites", jScrollPane1);
+
+        jTabbedPane1.addTab("Informacion de Civiles", Tabbed_infoCiv);
+        jTabbedPane1.addTab("tab2", jTabbedPane3);
+
+        jButton1.setBackground(new java.awt.Color(255, 0, 0));
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jButton1.setText("Cerrar Sesion");
+
+        javax.swing.GroupLayout PanelEmpleadosLayout = new javax.swing.GroupLayout(PanelEmpleados);
+        PanelEmpleados.setLayout(PanelEmpleadosLayout);
+        PanelEmpleadosLayout.setHorizontalGroup(
+            PanelEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelEmpleadosLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(PanelEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelEmpleadosLayout.createSequentialGroup()
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(20, Short.MAX_VALUE))
+                    .addGroup(PanelEmpleadosLayout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(30, 30, 30))))
+        );
+        PanelEmpleadosLayout.setVerticalGroup(
+            PanelEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelEmpleadosLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(PanelEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jButton1))
+                .addGap(32, 32, 32)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jFrame1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(PanelEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jFrame1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(PanelEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,6 +201,12 @@ public class Main extends javax.swing.JFrame {
         NC_login.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         NC_login.setForeground(new java.awt.Color(0, 0, 0));
         NC_login.setText("Nombre Completo");
+
+        tf_nombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_nombreActionPerformed(evt);
+            }
+        });
 
         contra_lg.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         contra_lg.setForeground(new java.awt.Color(0, 0, 0));
@@ -107,28 +258,43 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(PF_login, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53)
                 .addComponent(ingresar_login)
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
-        Background.add(Panel_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 420));
+        Background.add(Panel_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 430));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Background, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(Background, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void ingresar_loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingresar_loginMouseClicked
-         
+        if (tf_nombre.getText().equalsIgnoreCase("Camila" + " Rosales") && new String(PF_login.getPassword()).equals("5678P")) {
+            tf_nombre.setText("");
+            PF_login.setText("");
+            this.setVisible(false);
+            PanelEmpleados.setVisible(true);      
+        } else {
+           PanelEmpleados.setVisible(false);
+            JOptionPane.showMessageDialog(this, "Usuario invalido");
+        }
+
     }//GEN-LAST:event_ingresar_loginMouseClicked
+
+    private void tf_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_nombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_nombreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,9 +335,20 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel Background;
     private javax.swing.JLabel NC_login;
     private javax.swing.JPasswordField PF_login;
+    private javax.swing.JPanel PanelEmpleados;
     private javax.swing.JPanel Panel_login;
+    private javax.swing.JTabbedPane Tabbed_infoCiv;
+    private javax.swing.JTable Table_info;
+    private javax.swing.JTable Table_tramites;
     private javax.swing.JLabel contra_lg;
     private javax.swing.JToggleButton ingresar_login;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JFrame jFrame1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTextField tf_nombre;
     private javax.swing.JLabel titulo_lg;
     // End of variables declaration//GEN-END:variables
