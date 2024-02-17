@@ -181,8 +181,6 @@ public class Main extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Sexo");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Departamento");
 
@@ -657,10 +655,10 @@ public class Main extends javax.swing.JFrame {
     }
 
     public void llenarComboboxEmpleados() {
-        DefaultComboBoxModel modelo = (DefaultComboBoxModel) jComboBox1.getModel();
+        DefaultComboBoxModel modelo = (DefaultComboBoxModel) jComboBox2.getModel();
         modelo.addElement(new Usuarios("Femenino"));
         modelo.addElement(new Usuarios("Masculino"));
-        jComboBox1.setModel(modelo);
+        jComboBox2.setModel(modelo);
     }
 
     //}
