@@ -11,6 +11,7 @@ import java.util.Date;
  * @author 29164
  */
 public class Tramites {
+
     private String nombre;
     private String descripcion;
     private Date fechaEnvio;
@@ -62,6 +63,5 @@ public class Tramites {
     public String toString() {
         return "Tramites{" + "nombre=" + nombre + ", descripcion=" + descripcion + ", fechaEnvio=" + fechaEnvio + ", numId=" + numId + '}';
     }
-    
-    
+
 }

@@ -19,17 +19,20 @@ public class Main extends javax.swing.JFrame {
 //Fila 3 Asiento 1
 
     ArrayList<Usuarios> usuario = new ArrayList();
-    Usuarios userin;
+    Civiles userin = new Civiles();
+
     /**
      * Creates new form Main
      */
     public Main() {
-        usuario.add(new Civiles("Juan", "Perez", "1234A", new Date(02/ 20 / 2006), "Masculino", "Cortes"));
+        usuario.add(new Civiles("Juan", "Perez", "1234A", new Date(02 / 20 / 2006), "Masculino", "Cortes"));
         usuario.add(new Civiles("Armando", " Casas", "3498W", new Date(18 / 10 / 1978), "Masculino", "Francisco Morazan"));
         usuario.add(new Civiles("Ana", "Fernandez", "9876M", new Date(31 / 12 / 1840), "Femenino", "Comayagua"));
         usuario.add(new Empleados("Mercadotecnia", "Recursos Humanos", 10, "Camila", "Rosales", "5678P", new Date(18 / 10 / 1978), "Femenino", "Francisco Morazan"));
         initComponents();
         llenartablaEmpleados();
+        llenarComboboxEmpleados();
+
     }
 
     /**
@@ -167,8 +170,6 @@ public class Main extends javax.swing.JFrame {
         jTabbedPane1.addTab("Informacion de Civiles", Tabbed_infoCiv);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Nombre");
@@ -404,7 +405,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Button_enviar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         jTabbedPane4.addTab("Gestion", jPanel4);
@@ -541,6 +542,8 @@ public class Main extends javax.swing.JFrame {
             jFrame1.setLocationRelativeTo(null);
             jFrame1.setVisible(true);
         } else if (tf_nombre.getText().equalsIgnoreCase("Juan" + " Perez") && new String(PF_login.getPassword()).equals("1234A")) {
+            userin = (Civiles) usuario.get(0);//table
+            llenartablaCiviles();//table
             tf_nombre.setText("");
             PF_login.setText("");
             this.setVisible(false);
@@ -549,6 +552,8 @@ public class Main extends javax.swing.JFrame {
             jFrame2.setLocationRelativeTo(null);
             jFrame2.setVisible(true);
         } else if (tf_nombre.getText().equalsIgnoreCase("Armando" + " Casas") && new String(PF_login.getPassword()).equals("3498W")) {
+            userin = (Civiles) usuario.get(1);//table
+            llenartablaCiviles();//table
             tf_nombre.setText("");
             PF_login.setText("");
             this.setVisible(false);
@@ -557,6 +562,8 @@ public class Main extends javax.swing.JFrame {
             jFrame2.setLocationRelativeTo(null);
             jFrame2.setVisible(true);
         } else if (tf_nombre.getText().equalsIgnoreCase("Ana" + " Fernandez") && new String(PF_login.getPassword()).equals("9876M")) {
+            userin = (Civiles) usuario.get(2);//table
+            llenartablaCiviles();//table
             tf_nombre.setText("");
             PF_login.setText("");
             this.setVisible(false);
@@ -622,40 +629,41 @@ public class Main extends javax.swing.JFrame {
             }
         });
     }
-    
-    public void llenartablaEmpleados(){
-        DefaultTableModel modelo = (DefaultTableModel)Table_info.getModel(); 
+
+    public void llenartablaEmpleados() {
+        DefaultTableModel modelo = (DefaultTableModel) Table_info.getModel();
         for (Usuarios usuarios : usuario) {
             if (usuarios instanceof Civiles) {
-            Object[] nuevarow = new Object[3];
-            nuevarow[0] = usuarios.getNombre() +" " + usuarios.getApellido();
-            nuevarow[1] = usuarios.getNumId();
-            nuevarow[2] = usuarios.getFechaNacimiento();
-            modelo.addRow(nuevarow);
+                Object[] nuevarow = new Object[3];
+                nuevarow[0] = usuarios.getNombre() + " " + usuarios.getApellido();
+                nuevarow[1] = usuarios.getNumId();
+                nuevarow[2] = usuarios.getFechaNacimiento();
+                modelo.addRow(nuevarow);
+            }
+            Table_info.setModel(modelo);
         }
-        Table_info.setModel(modelo);
     }
-    }
-       
-    public void llenartablaCiviles(){
-        DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
+
+    public void llenartablaCiviles() {
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setRowCount(0);
         Object row[] = new Object[3];
         row[0] = userin.getNombre();
         row[1] = userin.getNumId();
         row[2] = userin.getFechaNacimiento();
         modelo.addRow(row);
         jTable1.setModel(modelo);
+
     }
-    
-    public void llenarComboboxEmpleados(){
+
+    public void llenarComboboxEmpleados() {
         DefaultComboBoxModel modelo = (DefaultComboBoxModel) jComboBox1.getModel();
-        
-    }    
-    
+        modelo.addElement(new Usuarios("Femenino"));
+        modelo.addElement(new Usuarios("Masculino"));
+        jComboBox1.setModel(modelo);
+    }
+
     //}
-
-    
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
     private javax.swing.JButton Button_cerrarsesion;
@@ -709,5 +717,4 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel titulo_lg;
     // End of variables declaration//GEN-END:variables
 
-    
 }

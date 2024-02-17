@@ -11,6 +11,7 @@ import java.util.Date;
  * @author 29164
  */
 public class Empleados extends Usuarios {
+
     private String carrera;
     private String puestoLaboral;
     private int añostrabajando;
@@ -53,8 +54,5 @@ public class Empleados extends Usuarios {
     public String toString() {
         return "Empleados{" + "carrera=" + carrera + ", puestoLaboral=" + puestoLaboral + ", a\u00f1ostrabajando=" + añostrabajando + '}';
     }
-    
-    
-    
-    
+
 }

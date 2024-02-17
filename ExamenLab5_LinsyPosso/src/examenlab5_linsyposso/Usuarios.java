@@ -11,6 +11,7 @@ import java.util.Date;
  * @author 29164
  */
 public class Usuarios {
+
     private String nombre, apellido;
     private String contraseña;
     private Date fechaNacimiento;
@@ -28,7 +29,14 @@ public class Usuarios {
         this.fechaNacimiento = fechaNacimiento;
         this.sexo = sexo;
         this.departamento = departamento;
+         
     }
+
+    public Usuarios(String sexo) {
+        this.sexo = sexo;
+    }
+    
+    
 
     public String getNombre() {
         return nombre;
@@ -88,8 +96,7 @@ public class Usuarios {
 
     @Override
     public String toString() {
-        return "Usuarios{" + "nombre=" + nombre + ", apellido=" + apellido + ", contrase\u00f1a=" + contraseña + ", fechaNacimiento=" + fechaNacimiento + ", sexo=" + sexo + ", departamento=" + departamento + ", numId=" + numId + '}';
+        return sexo;
     }
-    
-    
+
 }

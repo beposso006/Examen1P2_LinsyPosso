@@ -12,7 +12,8 @@ import java.util.Date;
  * @author 29164
  */
 public class Civiles extends Usuarios {
-    ArrayList <Tramites> lista = new ArrayList();
+
+    ArrayList<Tramites> lista = new ArrayList();
 
     public Civiles() {
     }
@@ -33,6 +34,5 @@ public class Civiles extends Usuarios {
     public String toString() {
         return "Civiles{" + "lista=" + lista + '}';
     }
-    
-    
+
 }
