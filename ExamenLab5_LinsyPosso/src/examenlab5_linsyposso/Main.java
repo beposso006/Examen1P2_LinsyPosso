@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.SingleSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,7 +19,7 @@ public class Main extends javax.swing.JFrame {
 //Fila 3 Asiento 1
 
     ArrayList<Usuarios> usuario = new ArrayList();
-
+    Usuarios userin;
     /**
      * Creates new form Main
      */
@@ -28,7 +29,7 @@ public class Main extends javax.swing.JFrame {
         usuario.add(new Civiles("Ana", "Fernandez", "9876M", new Date(31 / 12 / 1840), "Femenino", "Comayagua"));
         usuario.add(new Empleados("Mercadotecnia", "Recursos Humanos", 10, "Camila", "Rosales", "5678P", new Date(18 / 10 / 1978), "Femenino", "Francisco Morazan"));
         initComponents();
-        llenartabla();
+        llenartablaEmpleados();
     }
 
     /**
@@ -68,7 +69,7 @@ public class Main extends javax.swing.JFrame {
         Button_cerrarsesion = new javax.swing.JButton();
         jFrame2 = new javax.swing.JFrame();
         jPanel2 = new javax.swing.JPanel();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
+        Table_civ = new javax.swing.JTabbedPane();
         TabbedP_infoCiv = new javax.swing.JTabbedPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -344,7 +345,7 @@ public class Main extends javax.swing.JFrame {
 
         TabbedP_infoCiv.addTab("Informacion", jScrollPane2);
 
-        jTabbedPane2.addTab("Informacion Personal", TabbedP_infoCiv);
+        Table_civ.addTab("Informacion Personal", TabbedP_infoCiv);
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -408,9 +409,9 @@ public class Main extends javax.swing.JFrame {
 
         jTabbedPane4.addTab("Gestion", jPanel4);
 
-        jTabbedPane2.addTab("Gestion de Tramites", jTabbedPane4);
+        Table_civ.addTab("Gestion de Tramites", jTabbedPane4);
 
-        jPanel2.add(jTabbedPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 55, 500, 430));
+        jPanel2.add(Table_civ, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 55, 500, 430));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
@@ -421,6 +422,11 @@ public class Main extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Cerrar Sesion");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, 20));
 
         javax.swing.GroupLayout jFrame2Layout = new javax.swing.GroupLayout(jFrame2.getContentPane());
@@ -570,6 +576,10 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_nombreActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -613,9 +623,10 @@ public class Main extends javax.swing.JFrame {
         });
     }
     
-    public void llenartabla(){
-        DefaultTableModel modelo = (DefaultTableModel)Table_info.getModel();
+    public void llenartablaEmpleados(){
+        DefaultTableModel modelo = (DefaultTableModel)Table_info.getModel(); 
         for (Usuarios usuarios : usuario) {
+            if (usuarios instanceof Civiles) {
             Object[] nuevarow = new Object[3];
             nuevarow[0] = usuarios.getNombre() +" " + usuarios.getApellido();
             nuevarow[1] = usuarios.getNumId();
@@ -624,6 +635,26 @@ public class Main extends javax.swing.JFrame {
         }
         Table_info.setModel(modelo);
     }
+    }
+       
+    public void llenartablaCiviles(){
+        DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
+        Object row[] = new Object[3];
+        row[0] = userin.getNombre();
+        row[1] = userin.getNumId();
+        row[2] = userin.getFechaNacimiento();
+        modelo.addRow(row);
+        jTable1.setModel(modelo);
+    }
+    
+    public void llenarComboboxEmpleados(){
+        DefaultComboBoxModel modelo = (DefaultComboBoxModel) jComboBox1.getModel();
+        
+    }    
+    
+    //}
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
@@ -637,6 +668,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTabbedPane TabbedP_infoCiv;
     private javax.swing.JTabbedPane Tabbed_infoCiv;
     private javax.swing.JTabbedPane Tabbed_modCiv;
+    private javax.swing.JTabbedPane Table_civ;
     private javax.swing.JTable Table_info;
     private javax.swing.JTable Table_tramites;
     private javax.swing.JTextField Tf_nombregest;
@@ -667,7 +699,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane4;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
@@ -677,4 +708,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField tf_nombre;
     private javax.swing.JLabel titulo_lg;
     // End of variables declaration//GEN-END:variables
+
+    
 }
