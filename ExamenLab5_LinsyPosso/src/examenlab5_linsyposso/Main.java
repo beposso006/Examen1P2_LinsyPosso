@@ -20,7 +20,7 @@ public class Main extends javax.swing.JFrame {
 
     ArrayList<Usuarios> usuario = new ArrayList();
     Civiles userin = new Civiles();
-
+   
     /**
      * Creates new form Main
      */
@@ -29,10 +29,13 @@ public class Main extends javax.swing.JFrame {
         usuario.add(new Civiles("Armando", " Casas", "3498W", new Date(18 / 10 / 1978), "Masculino", "Francisco Morazan"));
         usuario.add(new Civiles("Ana", "Fernandez", "9876M", new Date(31 / 12 / 1840), "Femenino", "Comayagua"));
         usuario.add(new Empleados("Mercadotecnia", "Recursos Humanos", 10, "Camila", "Rosales", "5678P", new Date(18 / 10 / 1978), "Femenino", "Francisco Morazan"));
+        for (Usuarios usuarios : usuario) {
+            System.out.println(usuarios.getNumId());;
+        }
         initComponents();
         llenartablaEmpleados();
         llenarComboboxEmpleados();
-
+        llenarboxId();
     }
 
     /**
@@ -447,7 +450,7 @@ public class Main extends javax.swing.JFrame {
 
         titulo_lg.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         titulo_lg.setForeground(new java.awt.Color(0, 0, 0));
-        titulo_lg.setText("LOGIN");
+        titulo_lg.setText("LOGIN RNP");
 
         NC_login.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         NC_login.setForeground(new java.awt.Color(0, 0, 0));
@@ -480,9 +483,6 @@ public class Main extends javax.swing.JFrame {
             .addGroup(Panel_loginLayout.createSequentialGroup()
                 .addGroup(Panel_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(Panel_loginLayout.createSequentialGroup()
-                        .addGap(227, 227, 227)
-                        .addComponent(titulo_lg))
-                    .addGroup(Panel_loginLayout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addGroup(Panel_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(NC_login, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -493,6 +493,10 @@ public class Main extends javax.swing.JFrame {
                         .addGap(203, 203, 203)
                         .addComponent(ingresar_login, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(214, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Panel_loginLayout.createSequentialGroup()
+                .addGap(0, 219, Short.MAX_VALUE)
+                .addComponent(titulo_lg)
+                .addGap(192, 192, 192))
         );
         Panel_loginLayout.setVerticalGroup(
             Panel_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -541,7 +545,7 @@ public class Main extends javax.swing.JFrame {
             jFrame1.setVisible(true);
         } else if (tf_nombre.getText().equalsIgnoreCase("Juan" + " Perez") && new String(PF_login.getPassword()).equals("1234A")) {
             userin = (Civiles) usuario.get(0);//table
-            llenartablaCiviles();//table
+            llenartablaCiviles();//table    
             tf_nombre.setText("");
             PF_login.setText("");
             this.setVisible(false);
@@ -660,6 +664,17 @@ public class Main extends javax.swing.JFrame {
         modelo.addElement(new Usuarios("Masculino"));
         jComboBox2.setModel(modelo);
     }
+    
+    public void llenarboxId(){
+        for (Usuarios usuarios : usuario) {
+          jComboBox1.addItem(usuarios.getNumId());
+        }
+        
+        
+    }
+    
+   
+
 
     //}
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package examenlab5_linsyposso;
-
 import java.util.Date;
 import java.util.Random;
 
@@ -30,12 +29,15 @@ public class Usuarios {
         this.fechaNacimiento = fechaNacimiento;
         this.sexo = sexo;
         this.departamento = departamento;
-
+        this.numId = generarId();
     }
 
     public Usuarios(String sexo) {
         this.sexo = sexo;
     }
+    
+    
+    
 
     public String getNombre() {
         return nombre;
@@ -97,8 +99,8 @@ public class Usuarios {
     public String toString() {
         return sexo;
     }
-
-    public String generarId() {
+    
+     public String generarId() {
         String identificadorDept = "";
         if (departamento.equals("Francisco Morazán")) {
             identificadorDept = "01";
@@ -120,6 +122,12 @@ public class Usuarios {
                 identificadorMunicipio = rand.nextInt(21) + 1;
                 break;
         }
+        String digitosAleatorios = "";
+        for (int i = 0; i < 5; i++) {
+            digitosAleatorios += rand.nextInt(10);
+        }
 
-    //}
-//}
+        return identificadorDept+ "-" + identificadorMunicipio + "-" + digitosAleatorios;
+    }
+    
+}
