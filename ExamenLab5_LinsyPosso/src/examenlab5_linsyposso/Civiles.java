@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class Civiles extends Usuarios {
 
-    ArrayList<Tramites> lista = new ArrayList();
+    public static ArrayList<Tramites> lista = new ArrayList();
 
     public Civiles() {
     }

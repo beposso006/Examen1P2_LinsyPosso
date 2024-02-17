@@ -19,8 +19,10 @@ public class Main extends javax.swing.JFrame {
 //Fila 3 Asiento 1
 
     ArrayList<Usuarios> usuario = new ArrayList();
+    ArrayList<Tramites> lista = new ArrayList();
+
     Civiles userin = new Civiles();
-   
+
     /**
      * Creates new form Main
      */
@@ -36,6 +38,7 @@ public class Main extends javax.swing.JFrame {
         llenartablaEmpleados();
         llenarComboboxEmpleados();
         llenarboxId();
+        llenartablatramites();
     }
 
     /**
@@ -368,6 +371,11 @@ public class Main extends javax.swing.JFrame {
         Button_enviar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Button_enviar.setForeground(new java.awt.Color(0, 0, 0));
         Button_enviar.setText("Enviar");
+        Button_enviar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Button_enviarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -589,6 +597,12 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void Button_enviarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_enviarMouseClicked
+        Date fechaEnvio = new Date();
+        userin.getLista().add(new Tramites(Tf_nombregest.getText(), TA_descripgest.getText(), fechaEnvio, userin));
+        JOptionPane.showMessageDialog(this, "Tramite realizado");
+    }//GEN-LAST:event_Button_enviarMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -646,6 +660,23 @@ public class Main extends javax.swing.JFrame {
         }
     }
 
+    public void llenartablatramites() {
+        DefaultTableModel modelo = (DefaultTableModel) Table_tramites.getModel();
+        modelo.setRowCount(0);
+        for (Tramites tram : userin.getLista()) {
+            //if (tram instanceof Civiles) {
+                Object[] nuevarow = new Object[4];
+                nuevarow[0]
+                        = nuevarow[3] = tram.getNombre()  ;  
+                nuevarow[2] = tram.getFechaEnvio();
+                nuevarow[1] = tram.getDescripcion();
+
+                modelo.addRow(nuevarow);
+            //}
+            Table_tramites.setModel(modelo);
+        }
+    }
+
     public void llenartablaCiviles() {
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setRowCount(0);
@@ -664,17 +695,13 @@ public class Main extends javax.swing.JFrame {
         modelo.addElement(new Usuarios("Masculino"));
         jComboBox2.setModel(modelo);
     }
-    
-    public void llenarboxId(){
-        for (Usuarios usuarios : usuario) {
-          jComboBox1.addItem(usuarios.getNumId());
-        }
-        
-        
-    }
-    
-   
 
+    public void llenarboxId() {
+        for (Usuarios usuarios : usuario) {
+            jComboBox1.addItem(usuarios.getNumId());
+        }
+
+    }
 
     //}
     // Variables declaration - do not modify//GEN-BEGIN:variables
